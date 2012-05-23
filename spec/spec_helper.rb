@@ -1,17 +1,12 @@
-dir = File.expand_path(File.dirname(__FILE__))
-$LOAD_PATH.unshift File.join(dir, 'lib')
-
-require 'mocha'
 require 'puppet'
 require 'rspec'
-require 'spec/autorun'
+require 'rspec-puppet'
 
-Spec::Runner.configure do |config|
-    config.mock_with :mocha
+def param_value(subject, type, title, param)
+  subject.resource(type, title).send(:parameters)[param.to_sym]
 end
 
-# We need this because the RAL uses 'should' as a method.  This
-# allows us the same behaviour but with a different method name.
-class Object
-    alias :must :should
+RSpec.configure do |c|
+  c.module_path  = File.expand_path(File.join(File.dirname(__FILE__), 'fixtures/modules'))
+  c.manifest_dir = File.expand_path(File.join(File.dirname(__FILE__), 'fixtures/manifests'))
 end
