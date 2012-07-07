@@ -1,17 +1,3 @@
-exim
+# Puppet Exim4 module
 
-This is the exim module.
-
-It is very ad hoc.
-
-License
--------
-
-
-Contact
--------
-
-
-Support
--------
-
+This module is very ad hoc and needs a lot of work.
