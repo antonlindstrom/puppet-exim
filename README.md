@@ -1,5 +1,7 @@
 # Puppet Exim4 module
 
+[![Build Status](https://secure.travis-ci.org/antonlindstrom/puppet-exim.png?branch=master)](http://travis-ci.org/antonlindstrom/puppet-exim)
+
 This module is very ad hoc and needs a lot of work. The main usage is to quickly spin up an MTA on your nodes.
 
 In the future I would like to make this module a bit more configurable. I think the implementations will come as needed.
