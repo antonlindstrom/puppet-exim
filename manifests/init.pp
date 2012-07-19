@@ -21,28 +21,15 @@
 #
 class exim($ensure='present') {
 
-  $service_status = $ensure ? {
-    absent  => 'stopped',
-    present => 'running',
-    default => fail('Ensure needs to be absent or present'),
-  }
-
-  package { 'exim4':
+  class { 'exim::package':
     ensure => $ensure,
   }
 
-  service { 'exim4':
-    ensure  => $service_status,
-    require => Package['exim4'],
+  class { 'exim::service':
+    ensure => $ensure,
   }
 
-  file { '/etc/exim4/update-exim4.conf.conf':
-    ensure  => $ensure,
-    owner   => root,
-    group   => root,
-    mode    => '0644',
-    content => template('exim/update-exim.conf.conf.erb'),
-    notify  => Service['exim4'],
+  class { 'exim::config':
+    ensure => $ensure,
   }
-
 }
